@@ -1,6 +1,7 @@
 import fs from 'fs';
 import logSymbols from 'log-symbols';
 import ora from 'ora';
+import yargs from 'yargs';
 import { config } from './config.js';
 import { client } from './graphClient.js';
 
@@ -103,6 +104,7 @@ function transform(samples) {
         'authorsPictures@odata.type': 'Collection(String)',
         authorsPictures: sample.authors.map(author => author.pictureUrl),
         imageUrl,
+        iconUrl: 'https://raw.githubusercontent.com/pnp/media/master/pnp-logos-generics/png/teal/300w/pnp-samples-teal-300.png',
         url: `https://adoption.microsoft.com/sample-solution-gallery/sample/${sample.sampleId}/`,
         createdDateTime,
         lastModifiedDateTime,
@@ -218,7 +220,12 @@ async function load(samples) {
 
 async function main() {
   const lastCrawledSampleDate = getLastCrawledSampleDate();
-  const samples = await extract({ fromCache: true, sinceDate: lastCrawledSampleDate });
+  
+  let fromCache = yargs(process.argv).argv.fromCache;
+  if (fromCache === undefined) {
+    fromCache = true;
+  }
+  const samples = await extract({ fromCache, sinceDate: lastCrawledSampleDate });
   if (samples.length === 0) {
     console.log(`${logSymbols.success} No new samples to load`);
     return;

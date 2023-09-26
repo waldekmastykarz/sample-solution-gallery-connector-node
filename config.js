@@ -59,6 +59,14 @@ export const config = {
         isRetrievable: 'true'
       },
       {
+        name: 'iconUrl',
+        type: 'String',
+        isRetrievable: 'true',
+        labels: [
+          'iconUrl'
+        ]
+      },
+      {
         name: 'url',
         type: 'String',
         isRetrievable: 'true',
