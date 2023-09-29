@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "createConnector": "node createConnector.js",
+    "createConnection": "node createConnection.js",
     "loadContent": "node loadContent.js"
   },
   "keywords": [],

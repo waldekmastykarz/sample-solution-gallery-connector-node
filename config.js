@@ -1,5 +1,5 @@
 export const config = {
-  connector: {
+  connection: {
     // 3-32 characters
     id: 'samplesolutiongallery',
     name: 'Sample Solution Gallery',

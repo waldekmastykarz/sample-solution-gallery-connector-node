@@ -150,7 +150,7 @@ function pushItem({ crawlInfo, id, sample, callback, errors }) {
 
 async function load(samples) {
   const spinner = ora('Loading content...').start();
-  const { id } = config.connector;
+  const { id } = config.connection;
 
   const queue = [...samples];
   const errors = [];

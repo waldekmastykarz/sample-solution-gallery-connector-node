@@ -1,10 +1,10 @@
 import { config } from './config.js';
 import { client } from './graphClient.js';
 
-async function createConnector() {
-  console.log('Creating connector...');
+async function createConnection() {
+  console.log('Creating connection...');
 
-  const { id, name, description, activitySettings } = config.connector;
+  const { id, name, description, activitySettings } = config.connection;
   await client
     .api('/external/connections')
     .post({
@@ -14,13 +14,13 @@ async function createConnector() {
       activitySettings
     });
 
-  console.log('Connector created');
+  console.log('Connection created');
 }
 
 async function createSchema() {
   console.log('Creating schema...');
 
-  const { id, schema } = config.connector;
+  const { id, schema } = config.connection;
   try {
     const res = await client
       .api(`/external/connections/${id}/schema`)
@@ -45,7 +45,7 @@ async function createSchema() {
 
 async function main() {
   try {
-    await createConnector();
+    await createConnection();
     await createSchema();
   }
   catch (e) {
