@@ -33,7 +33,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "**${authors}** modified on {{DATE(${lastModifiedDateTime})}}",
+              "text": "**${join(authors, ', ')}** modified on {{DATE(${lastModifiedDateTime})}}",
               "spacing": "Small",
               "$when": "${authors!='' && lastModifiedDateTime!=''}"
             },
@@ -45,7 +45,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "Modified by __${authors}__",
+              "text": "Modified by __${join(authors, ', ')}__",
               "spacing": "Small",
               "$when": "${authors!='' && lastModifiedDateTime==''}"
             },
@@ -57,8 +57,9 @@
             },
             {
               "type": "TextBlock",
-              "text": "**Products** ${products}",
-              "spacing": "Medium"
+              "text": "**Products:** ${join(products, ', ')}",
+              "spacing": "Medium",
+              "$when": "${products!=''}"
             }
           ],
           "horizontalAlignment": "Center",
